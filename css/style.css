@@ -70,9 +70,13 @@ transform: rotate(110deg);
 
 a.chat-trigger{
 position: fixed;
-right: .5rem;
-bottom: .5rem;
-transition: all 300ms ease-out;
+right: 22px;
+bottom: 24px;
+width: 30px;
+height: 30px;
+padding: 19px;
+border: 6px solid #fff;
+border-radius: 100px;
 }
 
 a.chat-trigger:hover{
@@ -88,6 +92,11 @@ height: 100%;
 position: relative;
 top: 180px;
 left: 40px;
+}
+
+#cat_stage{
+position: absolute;
+bottom: 0;
 }
 
 span.chat-notifications{
@@ -111,11 +120,7 @@ left: 1rem;
 top: 1rem;
 }
 
-#score_number{
-background: #FFFF2C;
-padding: .5rem;
-border-radius: 5px 0px 0px 5px;
-}
+
 
 #level{
 background: #20ABFF;
@@ -135,16 +140,90 @@ font-family: 'Chewy', cursive;
 background: rgba(255, 241, 112, 0);
 }
 
+
+ul.scores{
+margin-bottom: 0;
+margin-top: 10px;
+margin-left: -10px;
+height: 50px;
+position: absolute;
+z-index: 10;
+}
+
+ul.scores li{
+margin-bottom: 0;
+margin-left: 0px;
+}
+
+ul.scores li a{
+margin-left: 5px;
+padding: 10px;
+background: #20ABFF;
+border-radius: 3px;
+font-family: 'Chewy', cursive;
+color: #fff!important;
+box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+ul.scores li a:hover{
+background: #109AED;
+}
+
+a.back-to-games{
+background: #FFFF2C;
+padding: 11px;
+border-radius: 5px;
+position: relative;
+color: #000;
+}
+
+a.main-score{
+position: fixed;
+z-index: 10;
+left: 3rem;
+top: .5rem;
+border-radius: 5px;
+padding: 0px;
+box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.81),inset 0px 0px 1px;
+color: #4A4A4A;
+font-family: 'Chewy', cursive;
+background: rgba(255, 241, 112, 0);
+}
+
+#levels-drop{
+padding: 0px;
+top: 60px;
+left: 7px;
+max-width: 95%;
+border: none;
+background: #20ABFF;
+border-radius: 5px;
+z-index: 200;
+box-shadow: 0px 0px 5px #000;
+}
+
+.level-icon img{
+width: 50px;
+}
+
+#points-drop{
+padding: 0px;
+top: 60px;
+left: 7px;
+max-width: 95%;
+border: none;
+background: #20ABFF;
+border-radius: 5px;
+z-index: 200;
+box-shadow: 0px 0px 5px #000;
+}
+
+
+
 span.top-left-level{
 background: #20ABFF;
 padding: .5rem;
 border-radius: 0px 5px 5px 0px;
-}
-
-span.top-left-points{
-background: #FFFF2C;
-padding: .5rem;
-border-radius: 5px 0px 0px 5px;
 }
 
 #points-drop{
@@ -248,15 +327,55 @@ left: 25%;
 chat
 ***************************/
 #chat-drop{
-height: 80%;
-border-radius: 10px;
+height: 100%;
+border-radius: 0px;
 margin-top: 0px;
 padding-bottom: 0!important;
 border: none;
 position: absolute;
-bottom: 44px;
 box-shadow: 0px 0px 4px #000;
 padding-top: 0px;
+z-index: 999;
+background: rgba(0, 0, 0, 0.5);
+box-shadow: none;
+}
+
+#chat-drop.open{
+width: 100%!important;
+left:0px!important;
+}
+
+a.chat-trigger {
+position: fixed;
+right: 9px;
+bottom: 31px;
+width: 30px;
+height: 30px;
+padding: 18px;
+z-index: 9999;
+border: 6px solid #fff;
+border-radius: 100px;
+background: rgba(255, 255, 255, 0.84);
+}
+
+a.chat-trigger:before{
+content: "";
+display: block;
+width: 0;
+height: 0;
+border: inset 8px;
+border-color: white transparent transparent transparent;
+border-top-style: solid;
+position: absolute;
+top: auto;
+bottom: -19px;
+left: auto;
+right: 7px;
+z-index: 99999;
+}
+
+.touch .orbit-container .orbit-prev, .touch .orbit-container .orbit-next{
+display: inherit;
 }
 
 #chat-drop:before{
@@ -290,9 +409,9 @@ margin-bottom: 2rem;
 
 form#in-chat-input{
 position: absolute;
-bottom: 0px;
-right: 1rem;
-left: 1rem;
+bottom: 100px;
+right: 0rem;
+left: 0rem;
 }
 
 span.chat-name{
@@ -330,18 +449,30 @@ border-left-color: #20ABFF;
 .orbit-container .orbit-next > span {
 border-color: transparent;
 border-left-style: solid;
-border-left-color: #ECECEC;
-
+border-left-color: #20ABFF;
 left: 50%;
 margin-left: -4px;
-/* background: #fff; */
+}
+
+.orbit-container .orbit-prev > span {
+border-right-color: #20ABFF!important;
+left: -30%;
 }
 
 .orbit-container .orbit-next{
 background: #fff;
+border-radius: 3px;
 width: 20px;
-height: 65px;
-top: 28px;
+height: 55px;
+top: 34px;
+}
+
+.orbit-container .orbit-prev{
+background: #fff;
+border-radius: 3px;
+width: 20px;
+height: 55px!important;
+top: 35px!important;
 }
 
 .emoticons-slider{
@@ -355,8 +486,14 @@ display: inline-block;
 .orbit-container {
 position: relative;
 top: 0px;
-background: #fff;
+background: transparent;
 padding: 0px 19px;
+}
+
+input#chat_text{
+background: transparent;
+margin-top: 20px;
+margin-bottom: 0;
 }
 
 .orbit-container .orbit-prev {
@@ -365,18 +502,6 @@ width: 20px;
 height: 65px;
 top: 27px;
 }
-
-.orbit-container .orbit-prev > span {
-/* border-right-style: solid; */
-/* border-color: transparent; */
-/* border-right-color: white; */
-border-color: transparent;
-border-left-style: solid;
-border-right-color: #ECECEC;
-left: -10%;
-margin-left: -4px;
-}
-
 
 .orbit-container .orbit-prev:hover, .orbit-container .orbit-next:hover {
 background-color: #fff;
@@ -432,6 +557,77 @@ margin-bottom: 0;
 .food-buttons-cat{
 padding: 0;
 }
+
+/***************************
+cat actions
+***************************/
+ul.cat-actions{
+list-style: none;
+position: absolute;
+right: -24px;
+top: 42px;
+}
+
+ul.cat-actions li button{
+background: transparent;
+padding-top: 0px;
+padding-bottom: 0px;
+margin-bottom: 0;
+}
+
+li.cat-action{
+margin-top: 25px;
+}
+
+li.cat-action button i{
+border: 2px solid rgba(255, 255, 255, 1);
+padding: 10px;
+width: 40px;
+border-radius: 100px;
+opacity: .8;
+transition: all 300ms ease-out;
+}
+
+ul.cat-actions li button i:hover{
+-ms-transform: scale(1.2,1.2);
+-webkit-transform: scale(1.2,1.2);
+transform: scale(1.2,1.2);
+color: #fff;
+border: 3px solid #fff;
+}
+
+li.cat-action-feedme{
+width: 43px;
+position: absolute;
+right: 31px;
+z-index: 100;
+transition: all 300ms ease-out;
+}
+
+li.cat-action-feedme:hover{
+-ms-transform: scale(1.2,1.2);
+-webkit-transform: scale(1.2,1.2);
+transform: scale(1.2,1.2);
+}
+
+a.food-bowl{
+position: absolute;
+bottom: 30px;
+width: 50%;
+left:-50vw;
+z-index: 6;
+}
+
+a.food-bowl:hover{
+background: -moz-radial-gradient(center, ellipse cover,  rgba(255,255,50,1) 0%, rgba(230,230,220,0.01) 73%, rgba(229,229,229,0.01) 77%); /* FF3.6+ */
+background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(255,255,50,1)), color-stop(73%,rgba(230,230,220,0.01)), color-stop(77%,rgba(229,229,229,0.01))); /* Chrome,Safari4+ */
+background: -webkit-radial-gradient(center, ellipse cover,  rgba(255,255,50,1) 0%,rgba(230,230,220,0.01) 73%,rgba(229,229,229,0.01) 77%); /* Chrome10+,Safari5.1+ */
+background: -o-radial-gradient(center, ellipse cover,  rgba(255,255,50,1) 0%,rgba(230,230,220,0.01) 73%,rgba(229,229,229,0.01) 77%); /* Opera 12+ */
+background: -ms-radial-gradient(center, ellipse cover,  rgba(255,255,50,1) 0%,rgba(230,230,220,0.01) 73%,rgba(229,229,229,0.01) 77%); /* IE10+ */
+background: radial-gradient(ellipse at center,  rgba(255,255,50,1) 0%,rgba(230,230,220,0.01) 73%,rgba(229,229,229,0.01) 77%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffff32', endColorstr='#03e5e5e5',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
 /********************************
 choose
 ********************************/
@@ -624,3 +820,32 @@ top: 18rem!important;
 right: 6.2rem!important;
 color: #fff!important;
 }
+
+
+/********************************
+Dials
+********************************/
+.dials{
+position: fixed;
+bottom: 30px;
+left: 16px;
+z-index: 888;
+width: 250px;
+height: 50px;
+}
+
+.action-circle{
+display: inline-block;
+float: left;
+width: 50px;
+margin-right: 6px;
+}
+
+span.action-circle-info{
+position: absolute;
+bottom: -24px;
+text-align: center;
+color: #fff;
+font-size: 12px;
+}
+
